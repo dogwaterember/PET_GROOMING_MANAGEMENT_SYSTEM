@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.11.35327.3
+# Visual Studio Version 18
+VisualStudioVersion = 18.11.12306.390 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SY_PET_GROOMING_MANAGEMENT_SYSTEM", "SY_PET_GROOMING_MANAGEMENT_SYSTEM.csproj", "{A1349D1C-2392-4113-89C4-224E4083B752}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGMS_Data", "PGMS_Data\PGMS_Data.csproj", "{79599FB4-B7A7-43CE-B0C5-A4BABEC774FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PGMS_Logic", "PGMS_Logic\PGMS_Logic.csproj", "{537FF850-8D2C-4833-8D3B-8A55C9D6CCFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{A1349D1C-2392-4113-89C4-224E4083B752}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1349D1C-2392-4113-89C4-224E4083B752}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1349D1C-2392-4113-89C4-224E4083B752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79599FB4-B7A7-43CE-B0C5-A4BABEC774FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79599FB4-B7A7-43CE-B0C5-A4BABEC774FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79599FB4-B7A7-43CE-B0C5-A4BABEC774FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79599FB4-B7A7-43CE-B0C5-A4BABEC774FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{537FF850-8D2C-4833-8D3B-8A55C9D6CCFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{537FF850-8D2C-4833-8D3B-8A55C9D6CCFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{537FF850-8D2C-4833-8D3B-8A55C9D6CCFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{537FF850-8D2C-4833-8D3B-8A55C9D6CCFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

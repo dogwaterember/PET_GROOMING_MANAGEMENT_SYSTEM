@@ -1,4 +1,6 @@
-﻿namespace SY_PET_GROOMING_MANAGEMENT_SYSTEM
+﻿using PGMS_Logic;
+
+namespace SY_PET_GROOMING_MANAGEMENT_SYSTEM
 {
     internal class Program
     {
@@ -15,6 +17,7 @@
             // Initialized vars
             // could possibly have arrays here to store pet info later on, for admins to look at
             // users dont exactly have to exist but can be added
+            AuthenticationLogic AuthLogic = new AuthenticationLogic();
             string adminPlaceholder = "lShDSJ73rD";
             //
             Console.WriteLine("Pet Grooming Management System");
