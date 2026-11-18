@@ -9,11 +9,20 @@
 
   <ItemGroup>
     <Compile Remove="PGMS_Data\**" />
+    <Compile Remove="PGMS_Forms\**" />
+    <Compile Remove="PGMS_Form\**" />
     <Compile Remove="PGMS_Logic\**" />
+    <Compile Remove="WinFormsApp1\**" />
     <EmbeddedResource Remove="PGMS_Data\**" />
+    <EmbeddedResource Remove="PGMS_Forms\**" />
+    <EmbeddedResource Remove="PGMS_Form\**" />
     <EmbeddedResource Remove="PGMS_Logic\**" />
+    <EmbeddedResource Remove="WinFormsApp1\**" />
     <None Remove="PGMS_Data\**" />
+    <None Remove="PGMS_Forms\**" />
+    <None Remove="PGMS_Form\**" />
     <None Remove="PGMS_Logic\**" />
+    <None Remove="WinFormsApp1\**" />
   </ItemGroup>
 
   <ItemGroup>

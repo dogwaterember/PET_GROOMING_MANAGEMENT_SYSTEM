@@ -7,10 +7,15 @@ namespace PGMS_Logic
 {
     public class AuthenticationLogic
     {
-        ReservationDataService ReservationDS = new ReservationDataService();
-        public AuthenticationLogic()
+        UserData userData = new UserData();
+        ReservationDataService reservationDS = new ReservationDataService();
+
+        ReservationJsonDataService ReservationJsonDS;
+
+        public bool IsReservationNumberCorrect(string userinput)
         {
-            ReservationDS.ReserveTest();
+            ReservationJsonDS = new ReservationJsonDataService();
+            return ReservationJsonDS.DoesReservationNumberExists(userinput);
         }
     }
 }

@@ -6,12 +6,32 @@ namespace PGMS_Data
 {
     public class ReservationDataService
     {
-        UserData DataEntry = new UserData();
-        public void ReserveTest()
+        public ReservationDataService()
         {
-            Console.WriteLine($"Reservation ID: {DataEntry.ReservationID.Count}");
-            DataEntry.ReservationID.Add(DataEntry.ReservationID.Count);
-            Console.WriteLine($"Reservation ID: {DataEntry.ReservationID.Count}");
+            PopulateDummyStudentNumbers();
+        }
+
+        private void PopulateDummyStudentNumbers()
+        {
+            ReservationNumbers.Add(new Reservation() { ReservationID = "2016ABC000", ReserveName = "Kirchner" });
+            ReservationNumbers.Add(new Reservation() { ReservationID = "2015ABC000", ReserveName = "Lavhessine" });
+            ReservationNumbers.Add(new Reservation() { ReservationID = "2014ABC000", ReserveName = "Dogwa'er" });
+
+        }
+
+        public List<Reservation> ReservationNumbers { get; } = new List<Reservation>();
+
+        public bool DoesReservationNumberExists(string facultynumber)
+        {
+            //foreach (string number in FacultyNumbers)
+            //{
+            //    if (number.Equals(facultynumber.Trim(), StringComparison.OrdinalIgnoreCase))
+            //    {
+            //        return true;
+            //    }
+            //}
+
+            return false;
         }
     }
 }

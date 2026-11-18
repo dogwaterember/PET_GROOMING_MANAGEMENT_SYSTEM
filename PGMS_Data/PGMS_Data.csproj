@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="WinFormsApp1\**" />
+    <EmbeddedResource Remove="WinFormsApp1\**" />
+    <None Remove="WinFormsApp1\**" />
+  </ItemGroup>
+
 </Project>

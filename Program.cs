@@ -1,4 +1,5 @@
-﻿using PGMS_Logic;
+﻿using PGMS_Data;
+using PGMS_Logic;
 
 namespace SY_PET_GROOMING_MANAGEMENT_SYSTEM
 {
@@ -18,6 +19,7 @@ namespace SY_PET_GROOMING_MANAGEMENT_SYSTEM
             // could possibly have arrays here to store pet info later on, for admins to look at
             // users dont exactly have to exist but can be added
             AuthenticationLogic AuthLogic = new AuthenticationLogic();
+            ReservationJsonDataService ReserveJSON = new ReservationJsonDataService();
             string adminPlaceholder = "lShDSJ73rD";
             //
             Console.WriteLine("Pet Grooming Management System");
@@ -38,7 +40,7 @@ namespace SY_PET_GROOMING_MANAGEMENT_SYSTEM
                 Console.WriteLine("4 - Exit");
 
                 Console.Write("Enter Option: ");
-                int dashboardChoice = Convert.ToInt16(Console.ReadLine());
+                int dashboardChoice = Convert.ToInt32(Console.ReadLine());
 
                 while (dashboardChoice != 4)
                 {
@@ -47,7 +49,7 @@ namespace SY_PET_GROOMING_MANAGEMENT_SYSTEM
                         case 1:
                             // to do: verify that it is in DD/MM/YYYY format
                             int confirmation = 0;
-                            while(confirmation != 0)
+                            while(confirmation == 0)
                             {
                                 Console.WriteLine("Enter your Pet's Name:");
                                 string petName = Console.ReadLine();
@@ -61,7 +63,12 @@ namespace SY_PET_GROOMING_MANAGEMENT_SYSTEM
                                 Console.WriteLine($"Fur Parent Name: {parentName}");
                                 Console.WriteLine($"Reservation Date: {reservationDate}");
                                 Console.WriteLine("Are you sure this info is correct? Enter 1 to confirm.");
-                                confirmation = Convert.ToInt16(Console.ReadLine());
+                                confirmation = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine(confirmation);
+                                if (confirmation == 1)
+                                { // works but i need to deal with ReservationID increasing akin to a database
+                                    ReserveJSON.AddReservation(new Reservation() { ReservationID = "2014ABC000", ReserveName = parentName });
+                                }
                             }
                             break;
                         case 2:
