@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            adminBtn = new Button();
             label1 = new Label();
-            button2 = new Button();
+            userBtn = new Button();
             SuspendLayout();
             // 
-            // button1
+            // adminBtn
             // 
-            button1.Location = new Point(454, 148);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 0;
-            button1.Text = "Admin";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            adminBtn.Location = new Point(454, 148);
+            adminBtn.Name = "adminBtn";
+            adminBtn.Size = new Size(112, 34);
+            adminBtn.TabIndex = 0;
+            adminBtn.Text = "Admin";
+            adminBtn.UseVisualStyleBackColor = true;
+            adminBtn.Click += adminBtn_Click;
             // 
             // label1
             // 
@@ -52,26 +52,25 @@
             label1.Size = new Size(199, 25);
             label1.TabIndex = 2;
             label1.Text = "Choose a login method";
-            label1.Click += label1_Click;
             // 
-            // button2
+            // userBtn
             // 
-            button2.Location = new Point(12, 148);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 34);
-            button2.TabIndex = 3;
-            button2.Text = "User";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            userBtn.Location = new Point(12, 148);
+            userBtn.Name = "userBtn";
+            userBtn.Size = new Size(112, 34);
+            userBtn.TabIndex = 3;
+            userBtn.Text = "User";
+            userBtn.UseVisualStyleBackColor = true;
+            userBtn.Click += userBtn_Click;
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(578, 194);
-            Controls.Add(button2);
+            Controls.Add(userBtn);
             Controls.Add(label1);
-            Controls.Add(button1);
+            Controls.Add(adminBtn);
             Name = "Login";
             Text = "Pet Grooming Management System";
             ResumeLayout(false);
@@ -80,8 +79,8 @@
 
         #endregion
 
-        private Button button1;
+        private Button adminBtn;
         private Label label1;
-        private Button button2;
+        private Button userBtn;
     }
 }

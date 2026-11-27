@@ -7,12 +7,17 @@ namespace PGMS_Form
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void adminBtn_Click(object sender, EventArgs e)
         {
-
+            Hide();
+            using (var dashboard = new AdminDashboard())
+            {
+                dashboard.ShowDialog();
+            }
+            Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void userBtn_Click(object sender, EventArgs e)
         {
             Hide();
             using (var dashboard = new UserDashboard())
@@ -22,9 +27,5 @@ namespace PGMS_Form
             Show();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
