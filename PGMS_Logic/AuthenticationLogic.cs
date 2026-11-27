@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using PGMS_Data;
 
 namespace PGMS_Logic
 {
     public class AuthenticationLogic
     {
-        UserData userData = new UserData();
-        ReservationDataService reservationDS = new ReservationDataService();
+        // Placeholder key moved here from the console Program.cs.
+        // Fine for a demo; a real system would never hardcode this.
+        private const string AdminKey = "lShDSJ73rD";
 
-        ReservationJsonDataService ReservationJsonDS;
-
-        public bool IsReservationNumberCorrect(string userinput)
+        public bool IsAdminKeyCorrect(string userInput)
         {
-            ReservationJsonDS = new ReservationJsonDataService();
-            return ReservationJsonDS.DoesReservationNumberExists(userinput);
+            if (string.IsNullOrWhiteSpace(userInput))
+                return false;
+
+            return string.Equals(userInput.Trim(), AdminKey, StringComparison.Ordinal);
         }
     }
 }

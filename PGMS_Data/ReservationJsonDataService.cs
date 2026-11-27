@@ -12,6 +12,12 @@ namespace PGMS_Data
 
         private readonly string _jsonReservationFileName;
 
+        private static readonly JsonSerializerOptions _writeOptions =
+            new JsonSerializerOptions { WriteIndented = true };
+
+        private static readonly JsonSerializerOptions _readOptions =
+            new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+
         public ReservationJsonDataService()
         {
             _jsonReservationFileName = Path.Combine(
@@ -22,59 +28,74 @@ namespace PGMS_Data
 
         private void SaveDataToJsonFile()
         {
-            using (var outputStream = File.OpenWrite(_jsonReservationFileName))
-            {
-                JsonSerializer.Serialize<List<Reservation>>(
-                    new Utf8JsonWriter(outputStream, new JsonWriterOptions
-                    { SkipValidation = true, Indented = true })
-                    , reservationIDs);
-            }
+            string json = JsonSerializer.Serialize(reservationIDs, _writeOptions);
+            File.WriteAllText(_jsonReservationFileName, json);
         }
 
         private void RetrieveDataFromJsonFile()
         {
-            using (var jsonFileReader = File.OpenText(_jsonReservationFileName))
+            // First run: no file yet, so create an empty one.
+            if (!File.Exists(_jsonReservationFileName))
             {
-                reservationIDs = JsonSerializer.Deserialize<List<Reservation>>(
-                    jsonFileReader.ReadToEnd(),
-                    new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
-                    ?? new List<Reservation>();
+                SaveDataToJsonFile();
+                return;
             }
+
+            string json = File.ReadAllText(_jsonReservationFileName);
+
+            // An empty file would make Deserialize throw, so treat it as "no data".
+            if (string.IsNullOrWhiteSpace(json))
+            {
+                reservationIDs = new List<Reservation>();
+                return;
+            }
+
+            reservationIDs = JsonSerializer.Deserialize<List<Reservation>>(json, _readOptions)
+                ?? new List<Reservation>();
         }
 
-        public bool DoesReservationNumberExists(string facultyNumber)
+        public bool DoesReservationNumberExists(string reservationNumber)
         {
-            if (string.IsNullOrWhiteSpace(facultyNumber))
+            if (string.IsNullOrWhiteSpace(reservationNumber))
                 return false;
 
-            string target = facultyNumber.Trim();
+            string target = reservationNumber.Trim();
 
-            return reservationIDs.Any(f =>
-                string.Equals(f.ReservationID, target, StringComparison.OrdinalIgnoreCase));
+            return reservationIDs.Any(r =>
+                string.Equals(r.ReservationID, target, StringComparison.OrdinalIgnoreCase));
         }
 
         public bool AddReservation(Reservation reservation)
         {
-            if (reservation == null) // || string.IsNullOrWhiteSpace(reservation.ReservationID))
+            if (reservation == null)
                 return false;
 
             int nextId = reservationIDs
-            .Select(r => int.TryParse(r.ReservationID, out int id) ? id : 0)
-            .DefaultIfEmpty(0)
-            .Max() + 1;
+                .Select(r => int.TryParse(r.ReservationID, out int id) ? id : 0)
+                .DefaultIfEmpty(0)
+                .Max() + 1;
 
-            reservationIDs.Add(new Reservation
+            var newReservation = new Reservation
             {
                 ReservationID = nextId.ToString(),
                 ReserveName = reservation.ReserveName?.Trim() ?? string.Empty,
-                ReservationDate = reservation.ReservationDate.Trim() ?? string.Empty,
+                ReservationDate = reservation.ReservationDate?.Trim() ?? string.Empty,
                 PetName = reservation.PetName?.Trim() ?? string.Empty
+            };
 
-            });
-            Console.WriteLine("successfully added " + reservation.ReserveName);
+            reservationIDs.Add(newReservation);
 
-            SaveDataToJsonFile();
-            return true;
+            try
+            {
+                SaveDataToJsonFile();
+                return true;
+            }
+            catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException)
+            {
+                // Keep memory and file in sync: undo the add if the save failed.
+                reservationIDs.Remove(newReservation);
+                return false;
+            }
         }
 
         public List<Reservation> RetrieveAllReservation()
