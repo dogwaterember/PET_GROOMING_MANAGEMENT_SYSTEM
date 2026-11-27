@@ -35,7 +35,8 @@
             // 
             // adminBtn
             // 
-            adminBtn.Location = new Point(454, 148);
+            adminBtn.Location = new Point(239, 136);
+            adminBtn.Margin = new Padding(15);
             adminBtn.Name = "adminBtn";
             adminBtn.Size = new Size(112, 34);
             adminBtn.TabIndex = 0;
@@ -47,15 +48,18 @@
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Location = new Point(184, 66);
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(165, 10);
+            label1.Margin = new Padding(15);
             label1.Name = "label1";
-            label1.Size = new Size(199, 25);
+            label1.Size = new Size(265, 32);
             label1.TabIndex = 2;
             label1.Text = "Choose a login method";
             // 
             // userBtn
             // 
-            userBtn.Location = new Point(12, 148);
+            userBtn.Location = new Point(239, 72);
+            userBtn.Margin = new Padding(15);
             userBtn.Name = "userBtn";
             userBtn.Size = new Size(112, 34);
             userBtn.TabIndex = 3;
