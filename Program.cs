@@ -67,7 +67,8 @@ namespace SY_PET_GROOMING_MANAGEMENT_SYSTEM
                                 Console.WriteLine(confirmation);
                                 if (confirmation == 1)
                                 { // works but i need to deal with ReservationID increasing akin to a database
-                                    ReserveJSON.AddReservation(new Reservation() { ReservationID = "2014ABC000", ReserveName = parentName });
+                                    Console.WriteLine(confirmation);
+                                    ReserveJSON.AddReservation(new Reservation() { ReserveName = parentName, PetName = petName, ReservationDate = reservationDate });
                                 }
                             }
                             break;

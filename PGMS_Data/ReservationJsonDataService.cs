@@ -55,16 +55,21 @@ namespace PGMS_Data
 
         public bool AddReservation(Reservation reservation)
         {
-            if (reservation == null || string.IsNullOrWhiteSpace(reservation.ReservationID))
+            if (reservation == null) // || string.IsNullOrWhiteSpace(reservation.ReservationID))
                 return false;
 
-            if (DoesReservationNumberExists(reservation.ReservationID))
-                return false;
+            int nextId = reservationIDs
+            .Select(r => int.TryParse(r.ReservationID, out int id) ? id : 0)
+            .DefaultIfEmpty(0)
+            .Max() + 1;
 
             reservationIDs.Add(new Reservation
             {
-                ReservationID = reservation.ReservationID.Trim(),
-                ReserveName = reservation.ReserveName?.Trim() ?? string.Empty
+                ReservationID = nextId.ToString(),
+                ReserveName = reservation.ReserveName?.Trim() ?? string.Empty,
+                ReservationDate = reservation.ReservationDate.Trim() ?? string.Empty,
+                PetName = reservation.PetName?.Trim() ?? string.Empty
+
             });
             Console.WriteLine("successfully added " + reservation.ReserveName);
 
